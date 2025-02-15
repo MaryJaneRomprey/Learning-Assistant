@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Experience Design Tool</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h2 { color: #2c3e50; }
+        .category { margin-bottom: 15px; }
+        label { display: block; margin: 5px 0; cursor: pointer; }
+        .results { margin-top: 20px; padding: 10px; background: #f8f9fa; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <h2>Learning Experience Design Tool</h2>
+
+    <div class="category">
+        <strong>1️⃣ What is the primary goal of the learning program?</strong><br>
+        <label><input type="checkbox" data-category="learningGoals" value="Skill Development"> Skill Development</label>
+        <label><input type="checkbox" data-category="learningGoals" value="Knowledge Acquisition"> Knowledge Acquisition</label>
+        <label><input type="checkbox" data-category="learningGoals" value="Behavioral Change"> Behavioral Change</label>
+        <label><input type="checkbox" data-category="learningGoals" value="Performance Improvement"> Performance Improvement</label>
+        <label><input type="checkbox" data-category="learningGoals" value="Compliance"> Compliance</label>
+        <label><input type="checkbox" data-category="learningGoals" value="Onboarding"> Onboarding</label>
+        <label><input type="checkbox" data-category="learningGoals" value="Leadership Development"> Leadership Development</label>
+        <label><input type="checkbox" data-category="learningGoals" value="Team Building"> Team Building</label>
+    </div>
+
+    <div class="category">
+        <strong>2️⃣ What are the learner constraints?</strong><br>
+        <label><input type="checkbox" data-category="constraints" value="Time-Constrained"> Time-Constrained</label>
+        <label><input type="checkbox" data-category="constraints" value="Low Budget"> Low Budget</label>
+    </div>
+
+    <div class="results" id="recommendationResults">
+        <strong>Select options to see recommendations.</strong>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
