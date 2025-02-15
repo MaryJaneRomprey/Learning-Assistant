@@ -1,0 +1,64 @@
+// Learning Design Tool JavaScript
+
+// Object to store user responses
+let userSelections = {
+    learningGoals: [],
+    learnerType: [],
+    engagementLevel: [],
+    deliveryMethod: [],
+    constraints: []
+};
+
+// Learning solutions database
+const learningSolutions = {
+    "Skill Development": ["Interactive Simulations", "On-the-job Training", "Workshops", "Role-playing", "Job Aids"],
+    "Knowledge Acquisition": ["E-learning Modules", "Instructor-led Training", "Pre-tests/Post-tests", "Job Aids"],
+    "Behavioral Change": ["Coaching", "Gamification", "Scenario-based Learning", "Role-playing"],
+    "Performance Improvement": ["Microlearning", "Process Maps", "Performance Support Tools"],
+    "Compliance": ["Compliance E-learning", "Certification Programs", "Policies & Procedures"],
+    "Onboarding": ["E-learning Modules", "ILT Sessions", "Job Aids", "Performance Support Tools"],
+    "Leadership Development": ["Coaching", "Leadership Workshops", "Scenario-based Learning"],
+    "Team Building": ["Team-building Workshops", "Peer Learning", "Collaborative Projects"],
+    "Time-Constrained": ["Microlearning", "Job Aids", "Quick-reference Guides"],
+    "Low Budget": ["Text-based Materials", "Downloadable PDFs", "Low-tech Mobile Learning"]
+};
+
+// Function to update selections
+function updateSelection(category, value) {
+    if (!userSelections[category].includes(value)) {
+        userSelections[category].push(value);
+    } else {
+        userSelections[category] = userSelections[category].filter(item => item !== value);
+    }
+}
+
+// Function to generate recommendations based on selections
+function generateRecommendations() {
+    let recommendations = new Set();
+
+    userSelections.learningGoals.forEach(goal => {
+        if (learningSolutions[goal]) {
+            learningSolutions[goal].forEach(solution => recommendations.add(solution));
+        }
+    });
+
+    userSelections.constraints.forEach(constraint => {
+        if (learningSolutions[constraint]) {
+            learningSolutions[constraint].forEach(solution => recommendations.add(solution));
+        }
+    });
+
+    document.getElementById("recommendationResults").innerHTML = recommendations.size > 0
+        ? `<strong>Recommended Learning Solutions:</strong><br> ${[...recommendations].join(", ")}`
+        : "<strong>No recommendations yet.</strong> Please select options.";
+}
+
+// Attach event listeners to all checkboxes
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("input[type='checkbox']").forEach(input => {
+        input.addEventListener("change", function () {
+            updateSelection(this.dataset.category, this.value);
+            generateRecommendations();
+        });
+    });
+});
